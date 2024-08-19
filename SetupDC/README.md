@@ -5,6 +5,6 @@
     - Change the IP address from dynamic to Static
     - Enable PS Remoting on the server so that we can connect it with our workstation.
 
-```ps
+```shell
 Enable-PSRemoting
 ```
