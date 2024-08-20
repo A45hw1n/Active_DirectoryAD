@@ -29,3 +29,15 @@ import-Module ADDSDeployment
 ```shell
 install-ADDSForest
 ```
+
+6. After the domain is created, it resets our DNS server so we have to reconfigure it.
+```shell
+Get-NetIPAddress # to check the ip configuration
+Get-DNSClientServerAddress # to check the DNS server address and InterfaceIndex of adapter.
+```
+
+7. Setting and configuring our DNS server
+```shell
+Set-DNSClientServerAddress -InterfaceIndex 5 -ServerAddress 192.168.179.155 # use ur own parameters.
+```
+
