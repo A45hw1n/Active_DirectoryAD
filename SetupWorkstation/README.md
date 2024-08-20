@@ -10,7 +10,7 @@
 ```shell
 Start-Service WinRM
 ```
-- Now setting ap the value for the trusted hosts.
+- Now setting up the value for the trusted hosts.
 ```shell
 Set-Item WSMAN:\localhost\Client\TrustedHosts -value 192.168.179.138
 ```
