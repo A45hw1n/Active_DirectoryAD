@@ -18,4 +18,4 @@ Set-Item WSMAN:\localhost\Client\TrustedHosts -value 192.168.179.138
 ```shell
 Enter-PSSession `id` `computer-name`
 ```
-- Successfully connected to DC.
+- Successfully connected management client to DC.
