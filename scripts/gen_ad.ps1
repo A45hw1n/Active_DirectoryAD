@@ -7,13 +7,12 @@ function CreateADGroup() {
 	New-ADGroup -name $name -GroupScope Global
 }
 
-
 function CreateADUser() {
-	param( [Parameter(Mandatory=$true)] $userObject)
+	param( [Parameter(Mandatory=$true)] $userObject )
 	
 	#pulls names from json objects.
-	$name = $userObject.name 
-	$password = $userObject
+	$name = $userObject.name
+	$password = $userObject.password
 
 	#generates first initial lastname
 	$firstname, $lastname = $name.Split(" ")
@@ -23,7 +22,7 @@ function CreateADUser() {
 	
 
 	#Creates the AD User Object.
-	New-ADUser -Name $name -GivenName $firstname -Surname $lastname -SamAccountName $samAccountName -UserPrincipalName $principalname@$Global:Domain -AccountPassword (ConvertTo-SecureString $password -AsPlainText -Force) -PassThru | Enable-ADAccount
+	New-ADUser -Name "$name" -GivenName $firstname -Surname $lastname -SamAccountName $SamAccountName -UserPrincipalName $principalname@$Global:Domain -AccountPassword (ConvertTo-SecureString -AsPlainText $password -Force) -PassThru | Enable-ADAccount
 
 	#add a user to their appropriate group
 	foreach($group_name in $userObject.group) {
@@ -32,7 +31,7 @@ function CreateADUser() {
 			Get-ADGroup -Identity "$group_name"
 			Add-ADGroupMember -Identity $group_name -Members $username
 		}
-		catch [Microsoft.ActiveDirectory.Management.ADIentityNotFoundException]
+		catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException]
 		{
 			Write-Warning "User $name NOT added to group $group_name because it does not exist"
 		}
