@@ -11,14 +11,14 @@
 
 		{
 			"name": "Alice Lice",
-			"password": "P@ssw0rd789",
+			"password":"P@ssw0rd123",
 			"groups": [
 				"Employees"
 			]
 		},
 		{
 			"name": "Bob Ob",
-			"password": "P@ssw0rdABC",
+			"password":"P@ssw0rd789",
 			"groups": [
 				"Employees"
 			]
